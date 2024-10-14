@@ -1,0 +1,17 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="LGPL-3.0-only"
+authors="IThundxr"
+
+[[mods]]
+modId="lotuscodecs_minecraft"
+version="${version}"
+displayName="Lotus Codecs - Minecraft Module"
+description="Minecraft-specific code for Lotus Codecs"
+
+[[dependencies.lotuscodecs_minecraft]]
+modId="minecraft"
+type="required"
+versionRange="[${minecraft_version},)"
+ordering="NONE"
+side="BOTH"
