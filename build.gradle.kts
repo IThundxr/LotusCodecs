@@ -1,6 +1,3 @@
-import kotlin.reflect.full.declaredMemberProperties
-import kotlin.reflect.jvm.isAccessible
-
 plugins {
     id("java")
     id("java-library")
@@ -47,10 +44,10 @@ repositories {
 
 dependencies {
     api("com.mojang:datafixerupper:8.0.16")
-
-    minecraftImplementation(project(":"))
-    minecraftFabricImplementation(project(":"))
-    minecraftNeoforgeImplementation(project(":"))
+    
+    "minecraftApi"(project(":"))
+    "minecraftFabricApi"(project(":"))
+    "minecraftNeoforgeApi"(project(":"))
 }
 
 tasks.named<Jar>("jar") {
