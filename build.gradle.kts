@@ -23,20 +23,20 @@ java {
     registerFeature("minecraft") {
         usingSourceSet(sourceSets["minecraft"])
         withSourcesJar()
-        capability("maven_group"(), "${project.name}-minecraft", "lib_version"())
-        capability("maven_group"(), "${project.name}-minecraft-common", "lib_version"())
+        capability(group.toString(), "${"artifactId"()}-minecraft", version.toString())
+        capability(group.toString(), "${"artifactId"()}-minecraft-common", version.toString())
     }
     
     registerFeature("minecraftFabric") {
         usingSourceSet(sourceSets["minecraftFabric"])
-        capability("maven_group"(), "${project.name}-minecraft", "lib_version"())
-        capability("maven_group"(), "${project.name}-minecraft-fabric", "lib_version"())
+        capability(group.toString(), "${"artifactId"()}-minecraft", version.toString())
+        capability(group.toString(), "${"artifactId"()}-minecraft-fabric", version.toString())
     }
     
     registerFeature("minecraftNeoforge") {
         usingSourceSet(sourceSets["minecraftNeoforge"])
-        capability("maven_group"(), "${project.name}-minecraft", "lib_version"())
-        capability("maven_group"(), "${project.name}-minecraft-neoforge", "lib_version"())
+        capability(group.toString(), "${"artifactId"()}-minecraft", version.toString())
+        capability(group.toString(), "${"artifactId"()}-minecraft-neoforge", version.toString())
     }
 }
 
@@ -84,7 +84,7 @@ listOf("processResources", "processMinecraftResources", "processMinecraftFabricR
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            artifactId = "lotus-codecs"
+            artifactId = "artifactId"()
             from(components["java"])
         }
     }
