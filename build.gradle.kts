@@ -45,7 +45,11 @@ repositories {
 }
 
 dependencies {
-    implementation("com.mojang:datafixerupper:7.0.14")
+    implementation("com.mojang:datafixerupper:8.0.16")
+
+    minecraftImplementation(rootProject)
+    minecraftFabricImplementation(rootProject)
+    minecraftNeoforgeImplementation(rootProject)
 }
 
 tasks.named<Jar>("jar") {
