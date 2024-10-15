@@ -9,10 +9,7 @@ plugins {
 val isRelease = System.getenv("RELEASE_BUILD")?.toBoolean() ?: false
 val buildNumber = System.getenv("GITHUB_RUN_NUMBER")?.toInt()
 
-base.archivesName = "LotusCodecs"
 group = "maven_group"()
-
-version = "lib_version"()
 
 val build = buildNumber?.let { "-build.${it}" } ?: "-local"
 version = "lib_version"() + if (isRelease) "" else build
@@ -87,6 +84,7 @@ listOf("processResources", "processMinecraftResources", "processMinecraftFabricR
 publishing {
     publications {
         create<MavenPublication>("maven") {
+            artifactId = "lotus-codecs"
             from(components["java"])
         }
     }
