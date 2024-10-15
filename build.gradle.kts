@@ -23,20 +23,20 @@ java {
     registerFeature("minecraft") {
         usingSourceSet(sourceSets["minecraft"])
         withSourcesJar()
-        capability(project.group as String, "$project.name-minecraft", project.version as String)
-        capability(project.group as String, "$project.name-minecraft-common", project.version as String)
+        capability("maven_group"(), "${project.name}-minecraft", "lib_version"())
+        capability("maven_group"(), "${project.name}-minecraft-common", "lib_version"())
     }
     
     registerFeature("minecraftFabric") {
         usingSourceSet(sourceSets["minecraftFabric"])
-        capability(project.group as String, "$project.name-minecraft", project.version as String)
-        capability(project.group as String, "$project.name-minecraft-fabric", project.version as String)
+        capability("maven_group"(), "${project.name}-minecraft", "lib_version"())
+        capability("maven_group"(), "${project.name}-minecraft-fabric", "lib_version"())
     }
     
     registerFeature("minecraftNeoforge") {
         usingSourceSet(sourceSets["minecraftNeoforge"])
-        capability(project.group as String, "$project.name-minecraft", project.version as String)
-        capability(project.group as String, "$project.name-minecraft-neoforge", project.version as String)
+        capability("maven_group"(), "${project.name}-minecraft", "lib_version"())
+        capability("maven_group"(), "${project.name}-minecraft-neoforge", "lib_version"())
     }
 }
 
