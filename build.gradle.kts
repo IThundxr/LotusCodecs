@@ -3,6 +3,7 @@ import kotlin.reflect.jvm.isAccessible
 
 plugins {
     id("java")
+    id("java-library")
     id("maven-publish")
 }
 
@@ -45,11 +46,11 @@ repositories {
 }
 
 dependencies {
-    implementation("com.mojang:datafixerupper:8.0.16")
+    api("com.mojang:datafixerupper:8.0.16")
 
-    minecraftImplementation(rootProject)
-    minecraftFabricImplementation(rootProject)
-    minecraftNeoforgeImplementation(rootProject)
+    minecraftImplementation(project(":"))
+    minecraftFabricImplementation(project(":"))
+    minecraftNeoforgeImplementation(project(":"))
 }
 
 tasks.named<Jar>("jar") {
