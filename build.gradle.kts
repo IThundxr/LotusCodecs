@@ -54,7 +54,7 @@ tasks.named<Jar>("jar") {
     
     manifest.attributes(mapOf(
         "Automatic-Module-Name" to "${project.group}.${project.name}",
-        "FMLModType" to "LIBRARY"
+        "FMLModType" to "GAMELIBRARY"
     ))
 }
 
