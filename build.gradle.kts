@@ -51,12 +51,19 @@ dependencies {
 }
 
 tasks.named<Jar>("jar") {
-    manifest.attributes("FMLModType" to "LIBRARY")
+    
+    manifest.attributes(mapOf(
+        "Automatic-Module-Name" to "${project.group}.${project.name}",
+        "FMLModType" to "LIBRARY"
+    ))
 }
 
 listOf("minecraftJar").forEach { name ->
     tasks.named<Jar>(name) {
-        manifest.attributes(mapOf("Implementation-Minecraft-Version" to "minecraft_version"()))
+        manifest.attributes(mapOf(
+            "Automatic-Module-Name" to "${project.group}.${project.name}",
+            "Implementation-Minecraft-Version" to "minecraft_version"()
+        ))
     }
 }
 
