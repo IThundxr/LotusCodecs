@@ -23,7 +23,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-home-cache-cleanup: true
-          cache-read-only: true
 
       - name: Validate Gradle Wrapper Integrity
         uses: gradle/wrapper-validation-action@v2
