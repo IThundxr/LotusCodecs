@@ -10,11 +10,14 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.util.monitoring.jmx.MinecraftServerStatistics;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
@@ -82,5 +85,16 @@ public interface LotusStreamCodecs {
     StreamCodec<ByteBuf, InteractionHand> HAND = ByteBufCodecs.BOOL.map(
             value -> value ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND,
             hand -> hand == InteractionHand.MAIN_HAND
+    );
+    
+    StreamCodec<ByteBuf, BlockHitResult> BLOCK_HIT_RESULT = StreamCodec.composite(
+            ByteBufCodecs.BOOL, i -> i.getType() == HitResult.Type.MISS,
+            LotusStreamCodecs.VEC3, HitResult::getLocation,
+            Direction.STREAM_CODEC, BlockHitResult::getDirection,
+            BlockPos.STREAM_CODEC, BlockHitResult::getBlockPos,
+            ByteBufCodecs.BOOL, BlockHitResult::isInside,
+            (miss, location, direction, blockPos, isInside) -> 
+                miss ? BlockHitResult.miss(location, direction, blockPos) :
+                        new BlockHitResult(location, direction, blockPos, isInside)
     );
 }
